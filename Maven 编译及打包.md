@@ -57,14 +57,6 @@
 * ***finalName***，输出文件名；注意此处并不代表最终的完整的文件名，其也依赖于插件的执行行为；
 * ***filters***，环境变量列表；其指定的properties文件按行定义环境变量，如`name=value`，对应的环境变量只能在`build/resources`节点中使用；在Maven中默认的`filter`文件路径为`${basedir}/src/main/filters/`
 
-![1552026503253](C:\Users\ftp\AppData\Roaming\Typora\typora-user-images\1552026503253.png)
-
-![1552026612063](C:\Users\ftp\AppData\Roaming\Typora\typora-user-images\1552026612063.png)
-
-
-
-
-
 ### 资源文件
 
 ```
@@ -338,12 +330,6 @@
 * fileSets\fileSet\includes，需要包含的文件，支持通配符
 * fileSets\fileSet\excludes，需要排除的文件，支持通配符，同匹配条件excludes具有更高的优先级
 
-
-
-![1552032458330](C:\Users\ftp\AppData\Roaming\Typora\typora-user-images\1552032458330.png)
-
-![1552032485903](C:\Users\ftp\AppData\Roaming\Typora\typora-user-images\1552032485903.png)
-
 ### 路径配置
 
 ```
@@ -392,15 +378,19 @@
 
 [Maven-Jar-Plugin Configuration](http://maven.apache.org/shared/maven-archiver/)
 
-## 常见Q&A
+## FAQ
 
-### 分析以下Maven命令的执行生命周期
+> 分析以下Maven命令的执行生命周期
 
-```
+```shell
 mvn clean dependency:copy-dependencies package
 ```
 
-## 解释在如下配置中二个complie分别代表什么含义
+答：执行名为`clean`的`lifecycle` -> 执行插件`dependency`的`goal`，`copy-dependencies` -> 执行名为`package`的`phase`
+
+----
+
+> 解释在如下配置中二个complie分别代表什么含义
 
 ```
 <build>
@@ -424,9 +414,11 @@ mvn clean dependency:copy-dependencies package
 <build>
 ```
 
+答：第一个`compile`表示执行`build`时的默认`goal`，在idea中右键maven项目时会出现maven build选项，对应的也可以看到默认的goal加粗显示，表示执行的具体目标；第二个`compiler`为插件执行的触发条件，表示只有在项目执行`compile`时才会触发插件
 
+----
 
-### 判断在下方示例POM文件中，最终文件是否会被输出至targetPath
+> 判断在下方示例POM文件中，最终文件是否会被输出至targetPath
 
 ```
 <project xmlns="http://maven.apache.org/POM/4.0.0"
@@ -456,7 +448,5 @@ mvn clean dependency:copy-dependencies package
 </project>
 ```
 
-### Build节点中extensions配置项的设计理念及作用
-
-## build/plugin节点与build/pluginManagement节点的异同
+答：不会，exclude的优先级高于include
 

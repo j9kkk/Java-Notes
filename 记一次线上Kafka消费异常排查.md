@@ -209,8 +209,6 @@ Caused by: java.net.UnknownHostException: EM-6CU4525DYP: unknown error
 
 从中可以发现node 4节点在启动时报出了一个找不到`EM-6CU4525DYP`这个host的异常，在node 4上执行`hostname`命令，发现其主机名即为`EM-6CU4525DYP`!
 
-![1552650217207](C:\Users\ftp\AppData\Roaming\Typora\typora-user-images\1552650217207.png)
-
 分析原因，因为新增的四台节点为虚拟机，其hostname默认为对应的虚拟机名称，而kafka启动时会通过`java.net.InetAddress.getLocalHost`方法获取本机IP，当碰到无法解析的hostname时则抛出异常，进而无法提供服务
 
 ## 解决方案
@@ -221,8 +219,6 @@ Caused by: java.net.UnknownHostException: EM-6CU4525DYP: unknown error
 ## 总结
 
 * centos系统的hostname在`/etc/sysconfig/network`文件中
-
-  ![1552651287496](C:\Users\ftp\AppData\Roaming\Typora\typora-user-images\1552651287496.png)
 
 * 线上环境为kafka_2.11_0.10.1.0，验证存在hostname解析异常，在开发环境控制变量验证kafka_2.11_1.1.0不存在hostname解析异常；查看源码发现0.10.1.0使用`java.net.InetAddress.getLocalHost()`获取监听地址，1.1.0使用`new java.net.InetSocketAddress()`
 

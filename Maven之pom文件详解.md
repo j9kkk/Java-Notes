@@ -185,7 +185,7 @@ mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -Darchety
 * [pom文件cookbook](https://maven.apache.org/ref/3.6.0/maven-model/maven.html)
 * [pom文件详解](https://maven.apache.org/pom.html) 
   
-# 常见Q&A
+# FAQ
 > 我该使用Repository还是distributionManager/Repository?
 
 需要下载依赖包时，指定Maven仓库地址，使用Repository；需要上传公共库时，指定Maven仓库地址，使用distributionManager/Repository

@@ -31,9 +31,9 @@
 
 ### 解决的问题
 
-![1552983743527](C:\Users\ftp\AppData\Roaming\Typora\typora-user-images\1552983743527.png)
+![](https://ws4.sinaimg.cn/large/006tNc79gy1g26ljdiexnj312q0o2n29.jpg)
 
-![1552984083694](C:\Users\ftp\AppData\Roaming\Typora\typora-user-images\1552984083694.png)
+![](https://ws1.sinaimg.cn/large/006tNc79gy1g26ljwxrm9j31300okgqw.jpg)
 
 ### 调用关系链
 
@@ -77,7 +77,7 @@
 
 ### 结构图解
 
-![1553136220021](C:\Users\ftp\AppData\Roaming\Typora\typora-user-images\1553136220021.png)
+![屏幕快照 2019-04-18 10.54.10](https://ws4.sinaimg.cn/large/006tNc79gy1g26lm0c33pj30u00zqai8.jpg)
 
 ### 常用配置项
 
@@ -149,7 +149,7 @@ Log Event过滤器，每个过滤器有三种返回结果`Accept`|`Deny`|`Neutra
 | createOnDemand                                             | boolean            | true\|false  | false   | 是否开启延迟创建文件                                         |
 | filter                                                     | Filter             |              |         | 过滤器，多个filter应使用filters标签                          |
 | fileName                                                   | String             |              |         | 日志路径，若不存在则自动创建                                 |
-| filePattern                                                | String             |              |         | The pattern of the file name of the archived log file. The format of the pattern is dependent on the RolloverPolicy that is used. The DefaultRolloverPolicy will accept both a date/time pattern compatible with [SimpleDateFormat](http://download.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html) and/or a %i which represents an integer counter. The pattern also supports interpolation at runtime so any of the Lookups (such as the [DateLookup](https://logging.apache.org/log4j/2.x/manual/lookups.html#DateLookup)) can be included in the pattern. |
+| filePattern                                                | String             |              |         | 回滚的日志文件名格式                                         |
 | immediateFlush                                             | boolean            | true\|false  | true    | 是否立即写入磁盘                                             |
 | layout                                                     | Layout             |              | %m%n    | 日志内容格式，参考[Pattern Layout](https://logging.apache.org/log4j/2.x/manual/layouts.html#Pattern_Layout) |
 | name                                                       | String             |              |         | 同配置集中，Appender的name必须唯一                           |
@@ -171,8 +171,8 @@ Log Event过滤器，每个过滤器有三种返回结果`Accept`|`Deny`|`Neutra
 | strategy.DefaultRolloverStrategy.posixViewAttribute        | posixViewAttribute |              |         | 执行滚动时自定义的文件权限                                   |
 | ignoreExceptions                                           | boolean            | true\|false  | true    | 是否忽略appender的内部异常                                   |
 | filePermissions                                            | String             |              |         | 创建文件时赋予的权限，POSIX格式                              |
-| fileOwner                                                  | String             |              |         | File owner to define whenever the file is created.Changing file's owner may be restricted for security reason and Operation not permitted IOException thrown. Only processes with an effective user ID equal to the user ID of the file or with appropriate privileges may change the ownership of a file if [_POSIX_CHOWN_RESTRICTED](http://www.gnu.org/software/libc/manual/html_node/Options-for-Files.html) is in effect for path.Underlying files system shall support file [owner](https://docs.oracle.com/javase/7/docs/api/java/nio/file/attribute/FileOwnerAttributeView.html) attribute view. |
-| fileGroup                                                  | String             |              |         | File group to define whenever the file is created.Underlying files system shall support [POSIX](https://docs.oracle.com/javase/7/docs/api/java/nio/file/attribute/PosixFileAttributeView.html) file attribute view. |
+| fileOwner                                                  | String             |              |         | 文件所属人                                                   |
+| fileGroup                                                  | String             |              |         | 文件所属组                                                   |
 
 ----
 
@@ -308,7 +308,7 @@ logger.info("param-1: {}, param-2: {{}}, param-3: {}", "1", "2", "3")
 
 > Logger对象定义为static或variable有什么区别，适用于哪些场景？JCL及Slf4j是如何解决这个问题的？
 
-![1552901215062](C:\Users\ftp\AppData\Roaming\Typora\typora-user-images\1552901215062.png)
+![屏幕快照 2019-04-18 10.56.10](https://ws1.sinaimg.cn/large/006tNc79gy1g26lo7hu23j30xy0jkdk1.jpg)
 
 答：static在同容器多应用的场景下可能存在引用冲突；JCL默认使用MAP来存储每个Logger的引用，需要手动释放可能存在使用不当导致内存泄漏；Slf4j没有这样的机制，是否static完全交由使用者控制
 
